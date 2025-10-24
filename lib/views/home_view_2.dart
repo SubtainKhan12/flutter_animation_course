@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' show pi;
 
+import 'package:flutter_animation_course/views/home_view_3.dart';
+
 enum CircleSide { left, right }
 
 extension ToPath on CircleSide {
@@ -145,57 +147,62 @@ class _HomeView2State extends State<HomeView2> with TickerProviderStateMixin {
         centerTitle: true,
         elevation: 5,
       ),
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _counterClockWiseRotationAnimation,
-          builder: (context, child) {
-            return Transform(
-              alignment: Alignment.center,
-              transform: Matrix4.identity()
-                ..rotateZ(_counterClockWiseRotationAnimation.value),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AnimatedBuilder(
-                    animation: _flipController,
-                    builder: (context, child) {
-                      return Transform(
-                        alignment: Alignment.centerRight,
-                        transform: Matrix4.identity()
-                          ..rotateY(_flipAnimation.value),
-                        child: ClipPath(
-                          clipper: HalfCircleClipper(side: CircleSide.left),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.blue.shade800,
+      body: InkWell(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeView3()));
+        },
+        child: Center(
+          child: AnimatedBuilder(
+            animation: _counterClockWiseRotationAnimation,
+            builder: (context, child) {
+              return Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.identity()
+                  ..rotateZ(_counterClockWiseRotationAnimation.value),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AnimatedBuilder(
+                      animation: _flipController,
+                      builder: (context, child) {
+                        return Transform(
+                          alignment: Alignment.centerRight,
+                          transform: Matrix4.identity()
+                            ..rotateY(_flipAnimation.value),
+                          child: ClipPath(
+                            clipper: HalfCircleClipper(side: CircleSide.left),
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              color: Colors.blue.shade800,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                  AnimatedBuilder(
-                    animation: _flipController,
-                    builder: (context, child) {
-                      return Transform(
-                        alignment: Alignment.centerLeft,
-                        transform: Matrix4.identity()
-                          ..rotateY(_flipAnimation.value),
-                        child: ClipPath(
-                          clipper: HalfCircleClipper(side: CircleSide.right),
-                          child: Container(
-                            height: 100,
-                            width: 100,
-                            color: Colors.yellow,
+                        );
+                      },
+                    ),
+                    AnimatedBuilder(
+                      animation: _flipController,
+                      builder: (context, child) {
+                        return Transform(
+                          alignment: Alignment.centerLeft,
+                          transform: Matrix4.identity()
+                            ..rotateY(_flipAnimation.value),
+                          child: ClipPath(
+                            clipper: HalfCircleClipper(side: CircleSide.right),
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              color: Colors.yellow,
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

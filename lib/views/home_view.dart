@@ -39,7 +39,7 @@ class _HomeViewState extends State<HomeView>
 
   @override
   Widget build(BuildContext context) {
-    print('build');
+    // print('build');
     return Scaffold(
       appBar: AppBar(title: Text('Animation 1'),centerTitle: true,elevation: 5,),
       body: InkWell(
