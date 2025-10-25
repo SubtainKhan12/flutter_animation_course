@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation_course/views/home_view_5.dart';
 
 @immutable
 class Person {
@@ -104,13 +105,18 @@ class _DetailPageState extends State<DetailPage> {
         centerTitle: true,
         elevation: 5,
       ),
-      body: Center(
-        child: Column(
-          spacing: 10,
-          children: [
-            Text(widget.person.name, style: TextStyle(fontSize: 20)),
-            Text(widget.person.age.toString(), style: TextStyle(fontSize: 20)),
-          ],
+      body: InkWell(
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeView5()));
+        },
+        child: Center(
+          child: Column(
+            spacing: 10,
+            children: [
+              Text(widget.person.name, style: TextStyle(fontSize: 20)),
+              Text(widget.person.age.toString(), style: TextStyle(fontSize: 20)),
+            ],
+          ),
         ),
       ),
     );
